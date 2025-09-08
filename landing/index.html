@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Landing with Floating Chatbot</title>
+    <style>
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+            background: #f8fafc;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        h1 {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Floating chat container */
+        .chat-wrapper {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            /* keep on top of other content */
+        }
+
+        .chat-frame {
+            width: 380px;
+            height: 560px;
+            border: 0;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to My Website</h1>
+    <p>Here’s some content on the landing page…</p>
+
+    <!-- Floating chatbot -->
+    <div class="chat-wrapper">
+        <iframe class="chat-frame" src="http://localhost:3000/" title="Chatbot" allow="clipboard-read; clipboard-write">
+        </iframe>
+    </div>
+</body>
+
+</html>
