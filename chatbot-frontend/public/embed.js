@@ -1,6 +1,6 @@
 (function () {
     // CONFIG: change this to the full URL where this React app is hosted
-    var CHAT_APP_URL = "https://chat.example.com"; // <-- set your domain or subdomain
+    var CHAT_APP_URL = "http://69.197.187.24:3003"; // <-- set your domain or subdomain
 
     // Create the floating iframe
     var iframe = document.createElement("iframe");
