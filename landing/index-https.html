@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Landing with Floating Chatbot (HTTPS)</title>
+    <style>
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+            background: #f8fafc;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        h1 {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Floating chat container */
+        .chat-wrapper {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            /* keep on top of other content */
+        }
+
+        .chat-frame {
+            width: 380px;
+            height: 560px;
+            border: 0;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .debug-info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #2196f3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to My Website (HTTPS Version)</h1>
+    <p>Here's some content on the landing page…</p>
+
+    <div class="debug-info">
+        <h3>🔧 Debug Information</h3>
+        <p><strong>Protocol:</strong> <span id="protocol"></span></p>
+        <p><strong>Domain:</strong> <span id="domain"></span></p>
+        <p><strong>Chatbot URL:</strong> <span id="chatbot-url"></span></p>
+        <p><strong>Status:</strong> <span id="status"></span></p>
+    </div>
+
+    <!-- Floating chatbot -->
+    <div class="chat-wrapper">
+        <iframe class="chat-frame" id="chatbot-iframe" title="Chatbot" allow="clipboard-read; clipboard-write">
+        </iframe>
+    </div>
+
+    <script>
+        // Detect if we're on HTTPS and adjust URLs accordingly
+        const isHttps = window.location.protocol === 'https:';
+        const currentDomain = window.location.hostname;
+
+        // Set chatbot URL based on protocol
+        let chatbotUrl;
+        if (isHttps) {
+            // For HTTPS, use HTTPS protocol to avoid mixed content issues
+            chatbotUrl = `https://69.197.187.24:3003`;
+        } else {
+            // For HTTP, use the IP address
+            chatbotUrl = 'http://69.197.187.24:3003';
+        }
+
+        // Update debug info
+        document.getElementById('protocol').textContent = window.location.protocol;
+        document.getElementById('domain').textContent = currentDomain;
+        document.getElementById('chatbot-url').textContent = chatbotUrl;
+
+        // Set iframe source
+        const iframe = document.getElementById('chatbot-iframe');
+        iframe.src = chatbotUrl;
+
+        // Monitor iframe load
+        iframe.onload = function () {
+            document.getElementById('status').textContent = '✅ Chatbot loaded successfully';
+            document.getElementById('status').style.color = 'green';
+            console.log('Chatbot iframe loaded successfully');
+        };
+
+        iframe.onerror = function (error) {
+            document.getElementById('status').textContent = '❌ Chatbot failed to load';
+            document.getElementById('status').style.color = 'red';
+            console.error('Chatbot iframe load error:', error);
+        };
+
+        // Check for mixed content issues
+        if (isHttps && chatbotUrl.startsWith('http://')) {
+            document.getElementById('status').textContent = '⚠️ Mixed content detected - HTTPS page loading HTTP resources';
+            document.getElementById('status').style.color = 'orange';
+            console.warn('Mixed content detected: HTTPS page trying to load HTTP resources');
+        }
+
+        console.log('Page loaded with protocol:', window.location.protocol);
+        console.log('Chatbot URL set to:', chatbotUrl);
+    </script>
+</body>
+
+</html>

@@ -9,9 +9,11 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3003',
-  'https://yourdomain.com', // Replace with your actual cPanel domain
-  'https://www.yourdomain.com', // Replace with your actual cPanel domain
-  'http://69.197.187.24:3003', // Keep your current IP for testing
+  'https://ds-landing.42web.io', // Your actual domain
+  'https://www.ds-landing.42web.io', // Your actual domain with www
+  'https://chat-app.infinityfree.me', // Your actual hosting domain
+  'http://69.197.187.24:3003', // Your React frontend
+  'https://69.197.187.24:3003', // Your React frontend (HTTPS)
 ];
 
 app.use(cors({ 
