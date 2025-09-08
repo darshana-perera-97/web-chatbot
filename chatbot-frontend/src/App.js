@@ -8,8 +8,8 @@ import ChatWidget from "./ChatWidget";
  */
 export default function App() {
   const backendUrl =
+    // process.env.REACT_APP_BACKEND_URL || "https://yourdomain.com:8080";
     process.env.REACT_APP_BACKEND_URL || "http://69.197.187.24:8080";
-    // process.env.REACT_APP_BACKEND_URL || "http://69.197.187.24:8080";
 
   return (
     <div className="standalone">
